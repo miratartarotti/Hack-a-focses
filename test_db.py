@@ -59,12 +59,20 @@ def get_lectures():
     rows = cur.fetchall()
     return rows
 
-def get_comments(lecture_id, sentence_id):
+def get_comments(lecture_id, sentence_id, html = False):
     conn = create_connection(DATABASE)
     cur = conn.cursor()
     cur.execute("SELECT comment,user_id,date FROM comments WHERE lecture_id = ? AND sentence_id = ? ", (lecture_id, sentence_id) )
     rows = cur.fetchall()
-    return rows
+    if html == False:
+        return rows
+    else:
+        sentence = ''
+        if len(row) == 0:
+            sentence += 'No comments on this sentence'
+        for row in enumerate(rows):
+            sentence += '<a class = "comment"> On the'+ row[2]+' '+row[1]+' wrote: <br> '+row[0]+'</a><br>'
+        return sentence
 
 def init():
     database = r"lecture_notes.db"
