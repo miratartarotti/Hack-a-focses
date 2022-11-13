@@ -92,11 +92,10 @@ def get_comments(lecture_id, sentence_id, html = False):
     if html == False:
         return rows
     else:
+        format = "%d-%m-%Y %H:%M:%S[.ffffff]"
         sentence = ''
-        if len(rows) == 0:
-            sentence += 'No comments on this sentence'
-        for row in rows:
-            sentence += f'<div class = "comment"> On the {row[2]}, {row[1]} wrote: <br> {row[0]} </div><br>'
+        for comment, user_id, date in rows:
+            sentence += f'<br><div class = "comment"> <h5>On the {date[0:10]}, user_{user_id} wrote:</h5> <p>{comment}</p> </div>'
         return sentence
 
 def init():
