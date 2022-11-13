@@ -1,6 +1,9 @@
 #/* --- Imports --- */#
+import os
+
 from flask import Flask
 from flask import render_template
+
 
 app = Flask(__name__)
 
@@ -14,6 +17,11 @@ def index(name=None): #Index page
 @app.route('/about.html')
 def about(name=None): #About page
     return render_template('about.html', name=name)
+
+@app.route('/templates')
+@app.route('/test_db.html')
+def about(name=None): #About page
+    return render_template('test_db.html', name=name)
 
 
 #/* start the server */#
