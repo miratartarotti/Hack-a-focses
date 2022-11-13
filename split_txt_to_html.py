@@ -52,4 +52,4 @@ def create_html(sentences):
         i = i+1
     return lecture_notes_new
 
-    
+
