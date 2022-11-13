@@ -9,8 +9,7 @@ from flask import render_template
 app = Flask(__name__)
 
 #/* --- Main --- */#
-@app.route('/templates')
-@app.route('/index.html')
+@app.route('/')
 def index(name=None): #Index page
     return render_template('index.html', name=name)
 
@@ -18,6 +17,10 @@ def index(name=None): #Index page
 @app.route('/about.html')
 def about_page(name=None): #About page
     return render_template('about.html', name=name)
+
+@app.route('/admin')
+def admin():
+    return "Nice try."
 
 @app.route('/templates')
 @app.route('/test_db.html')
