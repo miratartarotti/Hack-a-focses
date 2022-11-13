@@ -476,7 +476,7 @@ body {
 	font-family: 'Montserrat';
 	display: inline-block;
   height: 42px;
-  padding: 0 30px;
+  padding: 0 10px;
   text-align: center;
   font-size: 12px;
   font-weight: 600;
@@ -488,7 +488,7 @@ body {
   white-space: nowrap;
   cursor: pointer;
 	background-color: transparent;
-	background: #1e266d;
+	background: #283181;
   color: #FFFFFF;
   border: 1px solid #1e266d;
   border-radius: 50px;
@@ -500,14 +500,14 @@ body {
 
 .btn-action:hover {
 	color: #23D3D3;
-	background: #1e266d;
-	border: 1px solid #1e266d !important;
+	background: #141948;
+	border: 1px solid #141948 !important;
 	outline: none !important;
 	text-decoration: none;
 }
 
 .btn-action:focus, .btn-action:active {
-	background: #1e266d;
+	background: #141948;
 	color: #FFFFFF;
 	border: 1px solid transparent !important;
 	outline: none !important;
@@ -1959,7 +1959,7 @@ ul#countdown li {
   border-radius: 30px;
 	background-color: #F3F3F3;
   outline: none;
-  padding: 0 100px 0 20px;
+  padding: 0 20px 0 20px;
 	box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
 }
 
@@ -2346,7 +2346,7 @@ ul#countdown li {
 
 @media only screen and (min-width: 240px)and (max-width: 420px) {
 .form input {
-    padding: 0 75px 0 20px;
+    padding: 0 20px 0 20px;
 }
 .form .submit-button {
     margin-left: 0;
@@ -2393,7 +2393,7 @@ ul#countdown li {
 	}
 
 	.form input {
-	  padding: 0 75px 0 20px;
+	  padding: 0 20px 0 20px;
 	}
 
 	.form .submit-button {

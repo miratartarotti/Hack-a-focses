@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/static/assets/css/owl.theme.css">
     <link rel="stylesheet" href="/static/assets/css/ionicons.min.css"> <!-- Resource style -->
     <link href="/static/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" media="all" />
   </head>
   <body class="boxed-layout">
     <div class="wrapper">
@@ -54,14 +55,14 @@
           </div>
         <!-- Call to action -->
         <div id="cta" class="yd_cta_box">
-          <div class="containe">
+          <div class="container">
             <div class="cta_box">
               <div class="cta_box_inner">
                 <div class="col-sm-12 col-md-12">
                   <h4>Upload a new lecture</h4>
                   <form action = "/upload" method = "POST" enctype="multipart/form-data">
-                    <input type = "file" name = "file" />
-                    <input type = "submit" value = "submit" />
+                    <input class="btn-action" type = "file" name = "file" />
+                    <input class="btn-action" type = "submit" value = "submit" />
                  </form>
                   </div>
                 </div>

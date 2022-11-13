@@ -52,3 +52,7 @@
 a.sentence img {
     max-width: 90%;
 }
+
+ul.lecture_list {
+    line-height:2;
+}
