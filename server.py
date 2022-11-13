@@ -15,7 +15,7 @@ def index(name=None): #Index page
 
 @app.route('/templates')
 @app.route('/about.html')
-def about(name=None): #About page
+def about_page(name=None): #About page
     return render_template('about.html', name=name)
 
 @app.route('/templates')
@@ -23,6 +23,17 @@ def about(name=None): #About page
 def about(name=None): #About page
     return render_template('test_db.html', name=name)
 
+@app.route("/api/notes/<lecture_notes>/comments/s<sentence>")
+def load_comments(lecture_notes, sentence):
+    return """
+    <div class="comment">
+    Good idea!!
+    </div>
+
+    <div class="comment">
+    Meh :(
+    </div>
+    """
 
 #/* start the server */#
 if __name__ == '__main__':

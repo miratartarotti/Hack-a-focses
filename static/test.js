@@ -1,11 +1,9 @@
-
-
 function reveal(evt) {
     var sentence_id = evt.target.id;
 
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
-        document.selectElementById("comment-container").innerHTML = this.responseText;
+        document.getElementById("comment-contents").innerHTML = this.responseText;
     }
     xhttp.open("GET", `/api/notes/${lecture_notes}/comments/${sentence_id}`, true);
     xhttp.send();
