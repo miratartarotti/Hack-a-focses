@@ -2,10 +2,11 @@
 import os
 import datetime
 
-from flask import Flask, Markup, request, abort
+from flask import Flask, Markup, request, abort, redirect
 from flask import render_template
-
+from werkzeug.utils import secure_filename
 import test_db
+from split_txt_to_html import split_into_sentences
 
 
 app = Flask(__name__)
@@ -65,6 +66,33 @@ def load_lecture(lecture_id): #Get lecture from DB
                            lecture_id = lecture_id,
                            lecture_contents = Markup(contents))
 
+@app.route('/upload', methods = ['POST', 'GET'])
+def upload():
+    print('upload')
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        f.save('static/uploads/' + filename)
+        lecture_sentences = split_into_sentences('static/uploads/'+filename)
+        conn = test_db.create_connection(test_db.DATABASE)
+        cur = conn.cursor()
+        for i, sentence in enumerate(lecture_sentences):
+            if i == 0:
+                title = sentence
+                continue
+            if i == 1:
+                author = sentence
+                test_db.insert_lecture(cur,title, author)
+                cur.execute("SELECT MAX(lecture_id) FROM lectures")
+                lecture_number = cur.fetchall()[0][0]
+
+                continue
+            print(lecture_number,i-1, sentence)
+            test_db.insert_sentence(cur, lecture_number,i-1, sentence)
+        conn.commit()
+        
+        #process the file in the database
+        return redirect("/")
 
 #/* start the server */#
 if __name__ == '__main__':
