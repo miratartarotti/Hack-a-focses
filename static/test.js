@@ -1,7 +1,15 @@
 var active_sentence = -1;
 
 function reveal(evt) {
-    var sentence_id = evt.target.id;
+    var target = evt.target;
+    var sentence_id = -1;
+    if (target.tagName.toUpperCase() == "A") {
+        sentence_id = target.id;
+    } else if (target.tagName.toUpperCase() == "IMG") {
+        sentence_id = target.parentElement.id;
+    }
+
+    console.log(sentence_id);
     active_sentence = sentence_id;
     // show button to allow creating comments
     document.getElementById("create-comment").hidden = false;

@@ -31,14 +31,14 @@
     right: 40px;
     top: 100px;
     text-align: left;
-	padding: 20px 20px 50px 20px;
-	margin: 50 auto;
-	margin-bottom: 30px;
-	background-color: #FFFFFF;
-	box-shadow: 0px 0px 60px 0px rgba(0,0,0,.1);
-	border: transparent;
-	border-radius: 10px;
-	max-width: 400px;
+    padding: 20px 20px 50px 20px;
+    margin: 50 auto;
+    margin-bottom: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 60px 0px rgba(0,0,0,.1);
+    border: transparent;
+    border-radius: 10px;
+    max-width: 400px;
 }
 #comment-box .h2{
 	text-align: center;
@@ -47,4 +47,8 @@
 #create-comment {
     font-size: 40px;
     cursor: pointer;
+}
+
+a.sentence img {
+    max-width: 90%;
 }
