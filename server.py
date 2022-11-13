@@ -64,11 +64,6 @@ def load_lecture(lecture_id): #Get lecture from DB
     return render_template("lecture_notes.html",
                            lecture_id = lecture_id,
                            lecture_contents = Markup(contents))
-@app.route("/index.html")
-def load_lecture_list():
-    contents = test_db.get_lectures(html=True)
-    print(contents)
-    return render_template("index.html",lecture_list = Markup(contents))
 
 
 #/* start the server */#
