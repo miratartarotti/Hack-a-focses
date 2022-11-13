@@ -52,12 +52,19 @@ def insert_comment(cursor, lecture_id, sentence_id, comment, user_id, date):
     comment_task = (lecture_id, sentence_id, comment, user_id , date)
     cursor.execute(comment_sql, comment_task)
 
-def get_lectures():
+def get_lectures(html = False):
     conn = create_connection(DATABASE)
     cur = conn.cursor()
-    cur.execute("SELECT title, author FROM lectures")
+    cur.execute("SELECT lecture_id, title, author FROM lectures")
     rows = cur.fetchall()
-    return rows
+    if html == False:
+        return rows
+    else:
+        list_of_lectures = '<ul>'
+        for lecture_id, title, author in rows:
+            list_of_lectures +=f'<li> <a href="/l{lecture_id}">\"<i>{title}</i>\" by {author}</a></li>'
+        list_of_lectures += '</ul>'
+        return list_of_lectures
 
 def get_lecture_content(lecture_id, html = False):
     conn = create_connection(DATABASE)
