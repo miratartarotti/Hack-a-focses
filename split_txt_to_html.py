@@ -1,4 +1,5 @@
 import re
+
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
 suffixes = "(Inc|Ltd|Jr|Sr|Co)"
@@ -43,10 +44,12 @@ def create_html(sentences):
     lecture_notes_new = open("lecture_notes_new.html", "w")
     i = 0
     for sentence in sentences:
-        lecture_notes_new.write('<a id="s%d" class = "sentence">' % i + sentence + '</a>')
+        if sentence == "<br />":
+            lecture_notes_new.write(sentence)
+        else:
+            lecture_notes_new.write('<a id="s%d" class = "sentence">' % i + sentence + '</a>')
         i = i+1
     return lecture_notes_new
-
 
 
 
