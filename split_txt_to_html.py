@@ -27,6 +27,7 @@ def split_into_sentences(file_name):
     text = re.sub(" "+suffixes+"[.] "+starters," \\1<stop> \\2",text)
     text = re.sub(" "+suffixes+"[.]"," \\1<prd>",text)
     text = re.sub(" " + alphabets + "[.]"," \\1<prd>",text)
+    text = re.sub( alphabets + "[.]" + alphabets,"\\1<prd>\\2",text)
     if "”" in text: text = text.replace(".”","”.")
     if "\"" in text: text = text.replace(".\"","\".")
     if "!" in text: text = text.replace("!\"","\"!")
@@ -52,7 +53,3 @@ def create_html(sentences):
     return lecture_notes_new
 
     
-
-
-
-
