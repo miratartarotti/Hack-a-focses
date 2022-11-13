@@ -1,5 +1,6 @@
 #/* --- Imports --- */#
 import os
+import test_db
 
 from flask import Flask
 from flask import render_template
@@ -25,6 +26,7 @@ def about(name=None): #About page
 
 @app.route("/api/notes/<lecture_notes>/comments/s<sentence>")
 def load_comments(lecture_notes, sentence):
+    return test_db.get_comments(lecture_notes, sentence, html = True)
     return """
     <div class="comment">
     Good idea!!

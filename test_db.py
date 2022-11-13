@@ -68,10 +68,10 @@ def get_comments(lecture_id, sentence_id, html = False):
         return rows
     else:
         sentence = ''
-        if len(row) == 0:
+        if len(rows) == 0:
             sentence += 'No comments on this sentence'
-        for row in enumerate(rows):
-            sentence += '<a class = "comment"> On the'+ row[2]+' '+row[1]+' wrote: <br> '+row[0]+'</a><br>'
+        for row in rows:
+            sentence += f'<div class = "comment"> On the {row[2]}, {row[1]} wrote: <br> {row[0]} </div><br>'
         return sentence
 
 def init():
