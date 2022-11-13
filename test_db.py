@@ -65,15 +65,16 @@ def get_lecture_content(lecture_id, html = False):
     cur.execute("SELECT sentence_id, sentence FROM sentences WHERE lecture_id == ?", (lecture_id,))
     rows = cur.fetchall()
     cur.execute("SELECT title, author FROM lectures WHERE lecture_id == ?", (lecture_id,))
-    lecture_title = cur.fetchall
+    lecture_title = cur.fetchall()
     if html == False:
         return rows
     else:
-        html_content = f'<h2>{lecture_title[0][0]}</h2><br><h3>By {lecture_title[0][1]}</h3><br>'
+        html_content = f'<h2>{lecture_title[0][0]}</h2><br><h3>By {lecture_title[0][1]}</h3><p>'
         if len(rows) == 0:
             html_content += 'This lecture has no content'
         for row in rows:
             html_content += f'<a id = "s{row[0]}" class = "sentence"> {row[1]} </a><br>'
+        html_content += "</p>"
         return html_content
 
 def get_comments(lecture_id, sentence_id, html = False):
