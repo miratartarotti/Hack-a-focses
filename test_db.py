@@ -60,7 +60,7 @@ def get_lectures(html = False):
     if html == False:
         return rows
     else:
-        list_of_lectures = '<ul>'
+        list_of_lectures = '<ul class="lecture_list">'
         for lecture_id, title, author in rows:
             list_of_lectures +=f'<li> <a href="/l{lecture_id}">\"<i>{title}</i>\" by {author}</a></li>'
         list_of_lectures += '</ul>'
