@@ -23,18 +23,18 @@ def load_lecture_list():
 def about_page(name=None): #About page
     return render_template('about.html', name=name)
 
-@app.route('/admin')
+@app.route('/admin') #Prevent curiosity
 def admin():
     return "Nice try."
 
 @app.route('/templates')
 @app.route('/test_db.html')
-def about(name=None): #About page
+def about(name=None): #Load TestDB
     return render_template('test_db.html', name=name)
 
-@app.route("/api/notes/<lecture_id>/comments/s<sentence>")
-def load_comments(lecture_id, sentence):
-    return test_db.get_comments(lecture_id, sentence, html = True)
+@app.route("/api/notes/<lecture_notes>/comments/s<sentence>")
+def load_comments(lecture_notes, sentence): #Load lecture comments from DB
+    return test_db.get_comments(lecture_notes, sentence, html = True)
 
 @app.route("/api/notes/<lecture_id>/comments/s<sentence>/add", methods=["POST"])
 def add_comment(lecture_id, sentence):
@@ -59,11 +59,17 @@ def add_comment(lecture_id, sentence):
     return "OK"
 
 @app.route("/l<lecture_id>")
-def load_lecture(lecture_id):
+def load_lecture(lecture_id): #Get lecture from DB
     contents = test_db.get_lecture_content(lecture_id, html = True)
     return render_template("lecture_notes.html",
                            lecture_id = lecture_id,
                            lecture_contents = Markup(contents))
+@app.route("/index.html")
+def load_lecture_list():
+    contents = test_db.get_lectures(html=True)
+    print(contents)
+    return render_template("index.html",lecture_list = Markup(contents))
+
 
 #/* start the server */#
 if __name__ == '__main__':
