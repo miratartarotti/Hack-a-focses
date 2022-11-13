@@ -1,4 +1,5 @@
 import re
+import string
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -7,12 +8,14 @@ starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|Howeve
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
 digits = "([0-9])"
+symbol = "([a-zA-Z0-9_])"
 
 def split_into_sentences(file_name):
     with open(file_name, "r") as fic:
         text = fic.read()
     text = " " + text + "  "
     text = text.replace("\n","<br /> <stop>")
+    text = text.replace("jpg>", "jpg><stop>")
     text = re.sub(prefixes,"\\1<prd>",text)
     text = re.sub(websites,"<prd>\\1",text)
     text = re.sub(digits + "[.]" + digits,"\\1<prd>\\2",text)
@@ -27,7 +30,7 @@ def split_into_sentences(file_name):
     text = re.sub(" "+suffixes+"[.] "+starters," \\1<stop> \\2",text)
     text = re.sub(" "+suffixes+"[.]"," \\1<prd>",text)
     text = re.sub(" " + alphabets + "[.]"," \\1<prd>",text)
-    text = re.sub( alphabets + "[.]" + alphabets,"\\1<prd>\\2",text)
+    text = re.sub(symbol + "[.]"+ symbol, "\\1<prd>\\2", text)
     if "”" in text: text = text.replace(".”","”.")
     if "\"" in text: text = text.replace(".\"","\".")
     if "!" in text: text = text.replace("!\"","\"!")
@@ -51,5 +54,3 @@ def create_html(sentences):
             lecture_notes_new.write('<a id="s%d" class = "sentence">' % i + sentence + '</a>')
         i = i+1
     return lecture_notes_new
-
-
