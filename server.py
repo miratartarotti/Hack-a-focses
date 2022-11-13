@@ -27,15 +27,13 @@ def about(name=None): #About page
 @app.route("/api/notes/<lecture_notes>/comments/s<sentence>")
 def load_comments(lecture_notes, sentence):
     return test_db.get_comments(lecture_notes, sentence, html = True)
-    return """
-    <div class="comment">
-    Good idea!!
-    </div>
 
-    <div class="comment">
-    Meh :(
-    </div>
-    """
+@app.route("/lecture/<lecture_id>")
+def load_lecture(lecture_id):
+    contents = test_db.get_lecture_content(lecture_id, html = True)
+    return render_template("/templates/lecture_notes.html",
+                           lecture_id = lecture_id,
+                           lecture_contents = contents)
 
 #/* start the server */#
 if __name__ == '__main__':
