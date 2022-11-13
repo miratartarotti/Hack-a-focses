@@ -9,9 +9,12 @@ from flask import render_template
 app = Flask(__name__)
 
 #/* --- Main --- */#
-@app.route('/')
-def index(name=None): #Index page
-    return render_template('index.html', name=name)
+@app.route("/index.html")
+@app.route("/")
+def load_lecture_list():
+    contents = test_db.get_lectures(html=True)
+    print(contents)
+    return render_template("index.html",lecture_list = Markup(contents))
 
 @app.route('/templates')
 @app.route('/about.html')
@@ -37,11 +40,7 @@ def load_lecture(lecture_id):
     return render_template("lecture_notes.html",
                            lecture_id = lecture_id,
                            lecture_contents = Markup(contents))
-@app.route("/index.html")
-def load_lecture_list():
-    contents = test_db.get_lectures(html=True)
-    print(contents)
-    return render_template("index.html",lecture_list = Markup(contents))
+
 #/* start the server */#
 if __name__ == '__main__':
     app.run()
