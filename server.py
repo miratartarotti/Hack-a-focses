@@ -66,6 +66,13 @@ def load_lecture(lecture_id): #Get lecture from DB
                            lecture_id = lecture_id,
                            lecture_contents = Markup(contents))
 
+def prepare_title_author(s):
+    s = s.strip()
+    if s.endswith("."):
+        return s[:-1]
+    else:
+        return s
+
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
     print('upload')
@@ -78,10 +85,10 @@ def upload():
         cur = conn.cursor()
         for i, sentence in enumerate(lecture_sentences):
             if i == 0:
-                title = sentence
+                title = prepare_title_author(sentence)
                 continue
             if i == 1:
-                author = sentence
+                author = prepare_title_author(sentence)
                 test_db.insert_lecture(cur,title, author)
                 cur.execute("SELECT MAX(lecture_id) FROM lectures")
                 lecture_number = cur.fetchall()[0][0]
@@ -90,7 +97,7 @@ def upload():
             print(lecture_number,i-1, sentence)
             test_db.insert_sentence(cur, lecture_number,i-1, sentence)
         conn.commit()
-        
+
         #process the file in the database
         return redirect("/")
 
