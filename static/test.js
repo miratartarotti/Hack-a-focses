@@ -1,5 +1,10 @@
+var active_sentence = -1;
+
 function reveal(evt) {
     var sentence_id = evt.target.id;
+    active_sentence = sentence_id;
+    // show button to allow creating comments
+    document.getElementById("create-comment").hidden = false;
 
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
@@ -14,3 +19,32 @@ var sentence_tags = document.getElementsByClassName("sentence");
 for (var a = 0; a < sentence_tags.length; a++) {
     sentence_tags[a].onclick = reveal;
 }
+
+
+document.getElementById("create-comment").onclick = function() {
+    var form = document.getElementById("comment-form");
+    if (form.hidden) {
+        form.hidden = false;
+    } else
+    {
+        var author = document.getElementById("comment-form-author").value;
+        document.getElementById("comment-form-author").value = "";
+        var comment = document.getElementById("comment-form-comment").value;
+        document.getElementById("comment-form-comment").value = "";
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            console.log(this.responseText);
+            if (this.responseText == "OK") {
+                document.getElementById(active_sentence).click();
+            } else {
+                alert("Could not submit comment :(")
+            }
+        }
+        xhttp.open("POST", `/api/notes/${lecture_notes}/comments/${active_sentence}/add`, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`author=${author}&comment=${comment}`);
+
+        form.hidden = true;
+    }
+};

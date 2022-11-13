@@ -1,0 +1,50 @@
+.sentence {
+    transition: background-size 0.4s ease;
+    background: linear-gradient(to bottom, transparent 62%, #fff87e 0) center center/0% 75% no-repeat;
+    font-family: Quicksand;
+    font-size: 1.2rem;
+    padding: 0 6px 2px 6px;
+    cursor: pointer;
+    color: rgba(80, 89, 113, 0.7);
+    letter-spacing: 0.08rem;
+}
+.sentence:hover {
+    background-size: 100% 100%;
+}
+.sentence:active {
+    background-size: 80% 100%;
+}
+.comment h5{
+	font-family: monospace;
+	font-size:0.7rem;
+	letter-spacing: .10em;
+	color: rgba(36, 36, 36, 0.7);
+}
+
+.comment p{
+	font-family: 'Montserrat';
+}
+
+#comment-box {
+    position: fixed;
+    width: 500px;
+    right: 40px;
+    top: 100px;
+    text-align: left;
+	padding: 20px 20px 50px 20px;
+	margin: 50 auto;
+	margin-bottom: 30px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 60px 0px rgba(0,0,0,.1);
+	border: transparent;
+	border-radius: 10px;
+	max-width: 400px;
+}
+#comment-box .h2{
+	text-align: center;
+}
+
+#create-comment {
+    font-size: 40px;
+    cursor: pointer;
+}

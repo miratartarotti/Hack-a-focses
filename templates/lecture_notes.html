@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="static/assets/css/owl.theme.css">
     <link rel="stylesheet" href="static/assets/css/ionicons.min.css"> <!-- Resource style -->
     <link href="static/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="static/style.css" rel="stylesheet" type="text/css" media="all" />
   </head>
   <body class="boxed-layout">
     <div class="wrapper">
@@ -49,8 +50,15 @@
 
         <div id="comment-box">
           <h2>Comments: </h2>
-            <div id="comment-contents"></div>
+          <div id="comment-contents"></div>
+          <div class="form" id="comment-form" hidden="true">
+            Author: <input type="text" id="comment-form-author" />
+            <br/>
+            Comment:<br/>
+            <textarea id="comment-form-comment"></textarea>
           </div>
+          <a id="create-comment" hidden="true">🇨🇭</a>
+        </div>
         </div>
 
         <!-- Footer -->
@@ -89,15 +97,6 @@
       </div> <!-- Main -->
 </div><!-- Wrapper -->
 
-<<<<<<< HEAD
-=======
-<div id="comment-box">
-  <h3>Comments:</h3>
-  <div id="comment-contents"></div>
-  <button value="+">
-</div>
-
->>>>>>> 8a9a18ef888093db0a39a7871d8159e85e7e461a
     <!-- Jquery and Js Plugins -->
     <script src="static/assets/js/jquery-2.1.1.js"></script>
     <script src="static/assets/js/popper.min.js"></script>
